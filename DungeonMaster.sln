@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9A625F6-99F1-4A57-9F4B-4CD03B28ED0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonMaster.Library", "src\DungeonMaster.Library\DungeonMaster.Library.csproj", "{3721C0DB-160C-4056-9D2E-093F71F24C48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonMaster.Bot", "src\DungeonMaster.Bot\DungeonMaster.Bot.csproj", "{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libraries", "libraries", "{FCB6720D-6F39-48F4-BE80-4D50BF23EABC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Guppy", "Guppy", "{0F64FC95-1BCD-4EEF-B208-4C2A7C285135}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guppy.Core", "libraries\Guppy\src\Guppy.Core\Guppy.Core.csproj", "{C9549890-7977-4ACD-B8EF-D7AC112B406D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord.Net", "Discord.Net", "{D9CE7E94-F1C7-4AB5-93FB-3502BBDB5E34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Net.Core", "libraries\Discord.Net\src\Discord.Net.Core\Discord.Net.Core.csproj", "{DE1A195B-D118-4DCD-A406-F57944868AE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Net.Rest", "libraries\Discord.Net\src\Discord.Net.Rest\Discord.Net.Rest.csproj", "{D784C0A9-D11F-4191-B1F8-2388066B33A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Net.WebSocket", "libraries\Discord.Net\src\Discord.Net.WebSocket\Discord.Net.WebSocket.csproj", "{221E993C-82A4-4667-8AAF-03E7A5F24DDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3721C0DB-160C-4056-9D2E-093F71F24C48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3721C0DB-160C-4056-9D2E-093F71F24C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3721C0DB-160C-4056-9D2E-093F71F24C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3721C0DB-160C-4056-9D2E-093F71F24C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9549890-7977-4ACD-B8EF-D7AC112B406D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9549890-7977-4ACD-B8EF-D7AC112B406D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9549890-7977-4ACD-B8EF-D7AC112B406D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9549890-7977-4ACD-B8EF-D7AC112B406D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1A195B-D118-4DCD-A406-F57944868AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1A195B-D118-4DCD-A406-F57944868AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1A195B-D118-4DCD-A406-F57944868AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1A195B-D118-4DCD-A406-F57944868AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D784C0A9-D11F-4191-B1F8-2388066B33A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D784C0A9-D11F-4191-B1F8-2388066B33A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D784C0A9-D11F-4191-B1F8-2388066B33A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D784C0A9-D11F-4191-B1F8-2388066B33A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{221E993C-82A4-4667-8AAF-03E7A5F24DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{221E993C-82A4-4667-8AAF-03E7A5F24DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{221E993C-82A4-4667-8AAF-03E7A5F24DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{221E993C-82A4-4667-8AAF-03E7A5F24DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3721C0DB-160C-4056-9D2E-093F71F24C48} = {E9A625F6-99F1-4A57-9F4B-4CD03B28ED0B}
+		{ECAB0B24-278B-4F55-B2EE-316C97D0FFBC} = {E9A625F6-99F1-4A57-9F4B-4CD03B28ED0B}
+		{0F64FC95-1BCD-4EEF-B208-4C2A7C285135} = {FCB6720D-6F39-48F4-BE80-4D50BF23EABC}
+		{C9549890-7977-4ACD-B8EF-D7AC112B406D} = {0F64FC95-1BCD-4EEF-B208-4C2A7C285135}
+		{D9CE7E94-F1C7-4AB5-93FB-3502BBDB5E34} = {FCB6720D-6F39-48F4-BE80-4D50BF23EABC}
+		{DE1A195B-D118-4DCD-A406-F57944868AE4} = {D9CE7E94-F1C7-4AB5-93FB-3502BBDB5E34}
+		{D784C0A9-D11F-4191-B1F8-2388066B33A8} = {D9CE7E94-F1C7-4AB5-93FB-3502BBDB5E34}
+		{221E993C-82A4-4667-8AAF-03E7A5F24DDD} = {D9CE7E94-F1C7-4AB5-93FB-3502BBDB5E34}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF0C7B2D-78A9-4E66-B2ED-D17F980DEBA0}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+[submodule "libraries/Guppy"]
+	path = libraries/Guppy
+	url = https://github.com/rettoph/Guppy
+[submodule "libraries/Discord.Net"]
+	path = libraries/Discord.Net
+	url = https://github.com/discord-net/Discord.Net/
