@@ -9,10 +9,4 @@
     <ProjectReference Include="..\DungeonMaster.Library\DungeonMaster.Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

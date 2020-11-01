@@ -1,6 +1,4 @@
-﻿using DungeonMaster.Library.JsonConverters;
-using DungeonMaster.Library.ReactMenus;
-using DungeonMaster.Library.ReactMenus.Contexts;
+﻿using DungeonMaster.Library.Database;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,26 +20,7 @@ namespace DungeonMaster.Library
 
         #region Public Fields
         public String BotToken;
-        public UInt64 PrimaryGuildId;
-        public UInt64 StorageGuildId;
-
-        public String DefaultPassivePowerRoleName = "Admin";
-        public UInt64? PassivePowerRoleId;
-
-        public String DefaultActivePowerRoleName = "ActiveAdmin";
-        public UInt64? ActivePowerRoleId;
-
-        public String DefaultAdministrationCategoryChannelName = "Administration";
-        public UInt64? AdministrationCategoryChannelId;
-
-        public String DefaultAuditLogChannelName = "audit-log";
-        public UInt64? AuditLogChannelId;
-
-        public String DefaultTogglePowerChannelName = "toggle-power";
-        public UInt64? TogglePowerChannelId;
-        public Guid? TogglePowerMenuId;
-
-        public HashSet<ReactMenuContext> ReactMenus = new HashSet<ReactMenuContext>();
+        public ConnectionInfo ConnectionInfo;
         #endregion
 
         #region Helper Methods
@@ -49,7 +28,7 @@ namespace DungeonMaster.Library
         {
             using (StreamWriter writer = File.CreateText(Config.FilePath))
             {
-                writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented, new IEmoteConverter()));
+                writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
                 writer.Flush();
             }
         }
@@ -69,7 +48,7 @@ namespace DungeonMaster.Library
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
-                        return JsonConvert.DeserializeObject<Config>(reader.ReadToEnd(), new IEmoteConverter());
+                        return JsonConvert.DeserializeObject<Config>(reader.ReadToEnd());
                     }
                 }
             }

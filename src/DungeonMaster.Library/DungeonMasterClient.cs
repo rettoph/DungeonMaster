@@ -1,74 +1,69 @@
-﻿using Discord;
-using Discord.WebSocket;
-using DungeonMaster.Library.GuildManagers;
-using DungeonMaster.Library.ServiceLists;
-using Guppy;
+﻿using Discord.WebSocket;
+using DungeonMaster.Library.Database;
+using DungeonMaster.Library.Extensions.Microsoft.EntityFramework;
 using Guppy.DependencyInjection;
-using Guppy.Extensions.Collections;
-using Guppy.Extensions.DependencyInjection;
-using Guppy.Lists;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DungeonMaster.Library
 {
-    /// <summary>
-    /// Represents the primary dungeon master client instance.
-    /// 
-    /// This is the main interface point to create & run the bot.
-    /// </summary>
-    public sealed class DungeonMasterClient : Service
+    public class DungeonMasterClient
     {
         #region Private Fields
-        private ServiceProvider _provider;
         private Config _config;
-        private DiscordSocketClient _client;
-        private ReactMenuList _reactMenus;
+        private DiscordSocketClient _discord;
+        private DungeonContext _context;
+        private ILogger<DungeonMasterClient> _logger;
         #endregion
 
-        #region Lifecycle Methods
-        protected override void Initialize(ServiceProvider provider)
+        #region Constructor
+        public DungeonMasterClient(
+            Config config, 
+            DiscordSocketClient discord, 
+            DungeonContext context, 
+            ILogger<DungeonMasterClient> logger)
         {
-            base.Initialize(provider);
-
-            _provider = provider;
-            provider.Service(out _config);
-            provider.Service(out _client);
-            provider.Service(out _reactMenus);
+            _config = config;
+            _discord = discord;
+            _context = context;
+            _logger = logger;
         }
         #endregion
 
         #region Helper Methods
-        public async Task StartAsync()
+        public async void StartAsync()
         {
-            await _client.LoginAsync(TokenType.Bot, _config.BotToken);
-            await _client.StartAsync();
+            await _discord.LoginAsync(Discord.TokenType.Bot, _config.BotToken);
+            await _discord.StartAsync();
 
-            _client.Connected += this.HandleClientConnected;
-            _client.ReactionAdded += this.HandleReactionChanged;
-            _client.ReactionRemoved += this.HandleReactionChanged;
+            _discord.GuildAvailable += this.HandleGuildAvailable;
 
             await Task.Delay(-1);
         }
         #endregion
 
         #region Event Handlers
-        private async Task HandleClientConnected()
+        private Task HandleGuildAvailable(SocketGuild guild)
         {
-            await _provider.GetService<PrimaryGuildManager>().StartAsync();
-            await _provider.GetService<StorageGuildManager>().StartAsync();
+            try
+            {
+                _context.GuildMasters.FindOrCreate(
+                    filter: gm => gm.Guild == guild,
+                    builder: gm =>
+                    {
+                        gm.Guild = guild;
+                    }).Validate();
 
-            await Task.CompletedTask;
-        }
-
-        private Task HandleReactionChanged(Cacheable<IUserMessage, ulong> arg1, ISocketMessageChannel arg2, SocketReaction arg3)
-        {
-            if(arg3.User.Value.Id != _client.CurrentUser.Id)
-                _reactMenus.FirstOrDefault(rm => rm.MessageId == arg3.MessageId)?.ToggleReaction(arg3);
+                _context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                _logger.LogCritical(e.ToString());
+            }
 
             return Task.CompletedTask;
         }
