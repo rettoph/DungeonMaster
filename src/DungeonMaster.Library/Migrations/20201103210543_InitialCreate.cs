@@ -43,6 +43,8 @@ namespace DungeonMaster.Library.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     MessageReferenceId = table.Column<int>(nullable: true),
                     GuildMasterId = table.Column<int>(nullable: true)
                 },
@@ -72,7 +74,8 @@ namespace DungeonMaster.Library.Migrations
                     ReactMenuId = table.Column<int>(nullable: true),
                     Emote = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    Command = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -23,6 +23,10 @@ namespace DungeonMaster.Library
         [Key]
         public Int32 Id { get; set; }
 
+        public String Name { get; set; }
+
+        public String Description { get; set; }
+
         public MessageReference MessageReference { get; set; }
 
         public GuildMaster GuildMaster { get; set; }
@@ -47,13 +51,14 @@ namespace DungeonMaster.Library
         #endregion
 
         #region Helper Methods
-        public ReactMenuItem CreateItem(IEmote emote, String name, String description)
+        public ReactMenuItem CreateItem(IEmote emote, String name, String description, String commands)
         {
             var rmi = _context.GetService<ReactMenuItem>();
             rmi.ReactMenu = this;
             rmi.Emote = emote;
             rmi.Name = name;
             rmi.Description = description;
+            rmi.Command = commands;
             this.Items.Add(rmi);
 
             this.GuildMaster.AuditLogger.Log($"Created ReactMenuItem<{rmi.Id}>({rmi.Name}) for ReactMenu<{this.Id}>");

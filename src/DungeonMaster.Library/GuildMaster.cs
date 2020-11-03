@@ -77,7 +77,7 @@ namespace DungeonMaster.Library
             });
 
             var menu = await this.CreateReactMenu(this.TogglePowerChannel);
-            menu.CreateItem(new Emoji("👎"), "Admin", "Toggle Admin powers.");
+            menu.CreateItem(new Emoji("👎"), "Admin", "Toggle Admin powers.", "!role toggle @Admin");
         }
         #endregion
 

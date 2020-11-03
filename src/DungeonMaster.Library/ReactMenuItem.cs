@@ -20,5 +20,7 @@ namespace DungeonMaster.Library
         public String Name { get; set; }
 
         public String Description { get; set; }
+
+        public String Command { get; set; }
     }
 }

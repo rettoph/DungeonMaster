@@ -74,7 +74,9 @@ namespace DungeonMaster.Library
                     });
 
                 await gm.InitializeAsync();
-                _context.SaveChanges();
+
+                lock(_context)
+                    _context.SaveChanges();
             }
             catch(Exception e)
             {
