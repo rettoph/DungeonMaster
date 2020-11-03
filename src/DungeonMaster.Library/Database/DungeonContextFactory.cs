@@ -1,6 +1,6 @@
-﻿using Guppy;
-using Guppy.Utilities;
+﻿using DungeonMaster.Utilities;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -14,10 +14,7 @@ namespace DungeonMaster.Library.Database
         {
             AssemblyHelper.AddAssembly(Assembly.GetAssembly(typeof(DungeonContext)));
 
-            return new GuppyLoader()
-                .Initialize()
-                .BuildServiceProvider()
-                .GetService<DungeonContext>();
+            return DungeonMasterClient.BuildProvider().GetService<DungeonContext>();
         }
     }
 }

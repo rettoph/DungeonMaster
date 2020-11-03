@@ -16,8 +16,9 @@ namespace DungeonMaster.Library.Extensions.Microsoft.EntityFramework
 
             if(instance == default)
             {
-                instance = context.Add(context.GetService<T>()).Entity;
+                instance = context.GetService<T>();
                 builder(instance);
+                context.Add(instance);
             }
 
             return instance;

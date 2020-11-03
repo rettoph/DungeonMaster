@@ -27,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.Commands\Discord.Net.Commands.csproj" />
     <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.Core\Discord.Net.Core.csproj" />
     <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.Rest\Discord.Net.Rest.csproj" />
     <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.WebSocket\Discord.Net.WebSocket.csproj" />
-    <ProjectReference Include="..\..\libraries\Guppy\src\Guppy.Core\Guppy.Core.csproj" />
   </ItemGroup>
 
 </Project>

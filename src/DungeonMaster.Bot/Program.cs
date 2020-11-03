@@ -1,6 +1,6 @@
 ﻿using DungeonMaster.Library;
-using Guppy;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DungeonMaster.Bot
 {
@@ -8,11 +8,7 @@ namespace DungeonMaster.Bot
     {
         static void Main(string[] args)
         {
-            var guppy = new GuppyLoader();
-            var client = guppy
-                .Initialize()
-                .BuildServiceProvider()
-                .GetService<DungeonMasterClient>();
+            var client = DungeonMasterClient.BuildProvider().GetService<DungeonMasterClient>();
 
             // Start the client
             client.StartAsync();

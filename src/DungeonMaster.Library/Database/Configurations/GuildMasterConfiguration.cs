@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,18 @@ namespace DungeonMaster.Library.Database.Configurations
 {
     public class GuildMasterConfiguration : IEntityTypeConfiguration<GuildMaster>
     {
+        private DungeonContext _context;
         private DiscordSocketClient _client;
 
-        public GuildMasterConfiguration(DiscordSocketClient client)
+        public GuildMasterConfiguration(DungeonContext context)
         {
-            _client = client;
+            _context = context;
+            _client = _context.GetService<DiscordSocketClient>();
         }
 
         public void Configure(EntityTypeBuilder<GuildMaster> builder)
         {
-            builder.Ignore("Id");
-            builder.Ignore("ServiceContext");
-            builder.Ignore("InitializationStatus");
+            builder.HasIndex("Guild");
 
             builder.Property<SocketGuild>("Guild")
                 .HasConversion<UInt64?>(
