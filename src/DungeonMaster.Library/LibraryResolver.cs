@@ -13,6 +13,8 @@ namespace DungeonMaster.Library
 {
     internal static class LibraryResolver
     {
+        private static Boolean _resolved;
+
         public static OSPlatform CurrentPlatform;
         public static String RootDirectory;
         public static Dictionary<(String libraryName, OSPlatform platform, Architecture architecture), String> Lookup = new Dictionary<(String libraryName, OSPlatform platform, Architecture architecture), string>()
@@ -41,7 +43,11 @@ namespace DungeonMaster.Library
 
             LibraryResolver.RootDirectory = Path.GetDirectoryName(typeof(LibraryResolver).Assembly.Location);
 
+            if (_resolved)
+                return;
+
             NativeLibrary.SetDllImportResolver(typeof(DiscordSocketClient).Assembly, Resolve);
+            _resolved = true;
         }
 
         private static IntPtr Resolve(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
