@@ -32,7 +32,11 @@ namespace DungeonMaster.WebServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            DungeonSetup.ConfigureServices(services, this.Configuration["ConnectionString"]);
+            DungeonSetup.ConfigureServices(
+                services, 
+                this.Configuration["ConnectionString"], 
+                this.Configuration["Binaries:ffmpeg"], 
+                this.Configuration["Binaries:youtube-dl"]);
 
             services.AddHttpContextAccessor();
 

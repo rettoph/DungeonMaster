@@ -18,7 +18,7 @@ namespace DungeonMaster.Library
 {
     public static class DungeonSetup
     {
-        public static void ConfigureServices(IServiceCollection services, String connectionString)
+        public static void ConfigureServices(IServiceCollection services, String connectionString, String ffmpeg, String youtubeDl)
         {
             services.AddDbContext<DungeonContext>(options =>
             {
@@ -36,6 +36,8 @@ namespace DungeonMaster.Library
             }));
 
             LibraryResolver.Configure();
+            LibraryResolver.ffmpeg = ffmpeg;
+            LibraryResolver.youtubeDl = youtubeDl;
         }
 
 

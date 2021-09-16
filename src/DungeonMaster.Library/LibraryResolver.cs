@@ -18,10 +18,11 @@ namespace DungeonMaster.Library
         public static Dictionary<(String libraryName, OSPlatform platform, Architecture architecture), String> Lookup = new Dictionary<(String libraryName, OSPlatform platform, Architecture architecture), string>()
         {
             [(libraryName: "opus", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\libopus.dll",
-            [(libraryName: "libsodium", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\libsodium.dll",
-            [(libraryName: "ffmpeg", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\ffmpeg.exe",
-            [(libraryName: "youtube-dl", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\youtube-dl.exe"
+            [(libraryName: "libsodium", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\libsodium.dll"
         };
+
+        public static String ffmpeg;
+        public static String youtubeDl;
 
         public static void Configure()
         {

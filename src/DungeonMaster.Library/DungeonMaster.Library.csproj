@@ -6,22 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="binaries\win-x64\ffmpeg.exe" />
-    <None Remove="binaries\win-x64\youtube-dl.exe" />
     <None Remove="opus.dll" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="binaries\win-x64\ffmpeg.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="binaries\win-x64\libopus.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="binaries\win-x64\libsodium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="binaries\win-x64\youtube-dl.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -42,10 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.Core\Discord.Net.Core.csproj" />
     <ProjectReference Include="..\..\libraries\Discord.Net\src\Discord.Net.WebSocket\Discord.Net.WebSocket.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
