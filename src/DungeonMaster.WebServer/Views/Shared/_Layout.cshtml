@@ -45,7 +45,11 @@
                 </li>
 
                 <li class="sidebar-item">
-                    @Html.ActionLink("42Porter", "Index", "_42Porter", new { currentGuildId = discord.CurrentGuild.Value?.Id })
+                    @Html.ActionLink("Music", "Index", "Music", new { currentGuildId = discord.CurrentGuild.Value?.Id })
+                </li>
+
+                <li class="sidebar-item">
+                    @Html.ActionLink("Logs", "Logs", "Home")
                 </li>
             </ul>
         </div>
