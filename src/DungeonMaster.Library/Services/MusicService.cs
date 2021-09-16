@@ -49,7 +49,7 @@ namespace DungeonMaster.Library.Services
             }
             catch(Exception e)
             {
-                // throw e;
+                DungeonBot.Logger.Critical($"{e.Message}\n{e.StackTrace}");
             }
         }
 
