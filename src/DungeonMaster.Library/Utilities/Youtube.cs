@@ -48,7 +48,7 @@ namespace DungeonMaster.Library.Utilities
                     using(StreamReader reader = new StreamReader(error))
                     {
                         DungeonBot.Logger.Critical(reader.ReadToEnd());
-                        DungeonBot.Logger.Critical(message: e.Message, type: LogMessageType.Data);
+                        DungeonBot.Logger.Critical(message: e.Message, type: LogMessageType.System);
                     }
 
                     return default;

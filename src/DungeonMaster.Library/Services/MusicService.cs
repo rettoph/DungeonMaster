@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Audio;
 using Discord.WebSocket;
+using DungeonMaster.Library.Enums;
 using DungeonMaster.Library.Models;
 using DungeonMaster.Library.Utilities;
 using System;
@@ -49,7 +50,7 @@ namespace DungeonMaster.Library.Services
             }
             catch(Exception e)
             {
-                DungeonBot.Logger.Critical($"{e.Message}\n{e.StackTrace}");
+                DungeonBot.Logger.Critical($"{e.Message}\n{e.StackTrace}", type: LogMessageType.System);
             }
         }
 

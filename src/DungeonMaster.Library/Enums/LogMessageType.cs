@@ -6,7 +6,7 @@ namespace DungeonMaster.Library.Enums
 {
     public enum LogMessageType
     {
-        Data,
+        System,
         Info,
         Audit,
         Discord
