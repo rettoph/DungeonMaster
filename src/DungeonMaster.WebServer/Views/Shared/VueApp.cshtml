@@ -1,0 +1,12 @@
+﻿@using DungeonMaster.WebServer.Models
+
+@model VueConfig
+
+<section id="@Model.AppName">
+    <@Model.ComponentName></@Model.ComponentName>
+</section>
+
+@section scripts
+{
+    <script src="@Model.ScriptPath"></script>
+}

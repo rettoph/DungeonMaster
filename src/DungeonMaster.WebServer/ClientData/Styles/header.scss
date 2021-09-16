@@ -1,0 +1,48 @@
+﻿@import 'variables.scss';
+
+#header {
+    background: $discord-color-1;
+    box-shadow: $shadow-2;
+    align-items: stretch;
+    position: fixed;
+    width: 100%;
+    color: white;
+    z-index: 10;
+}
+
+#header-inner {
+    padding: 10px 75px;
+    display: flex;
+}
+
+#header .avatar {
+    width: 45px;
+    border-radius: 50%;
+    box-shadow: $shadow-1;
+}
+
+#header .title {
+    font-family: HalfElven;
+    text-shadow: $shadow-1;
+    display: inline-block;
+    padding: 0 0 0 25px;
+    margin: 0;
+}
+
+#current-guild {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    order: 2;
+    color: white;
+}
+
+#current-guild .icon {
+    width: 30px;
+    border-radius: 50%;
+    box-shadow: $shadow-1;
+}
+
+#current-guild .name {
+    padding: 10px;
+}

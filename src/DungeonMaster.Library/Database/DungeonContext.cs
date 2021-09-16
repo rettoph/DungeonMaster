@@ -1,38 +1,25 @@
-﻿using Discord.WebSocket;
-using DungeonMaster.Library.Database.Configurations;
+﻿using DungeonMaster.Library.Database.Configurations;
+using DungeonMaster.Library.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DungeonMaster.Library.Database
 {
-    public sealed class DungeonContext : DbContext
+    public class DungeonContext : DbContext
     {
-        #region Private Fields
-        private DiscordSocketClient _client;
-        #endregion
+        public DbSet<LogMessage> LogMessages { get; set; }
+        public DbSet<Guild> Guilds { get; set; }
 
-        #region Public Properties
-        public DbSet<MessageReference> MessageReferences { get; set; }
-        public DbSet<GuildMaster> GuildMasters { get; set; }
-        public DbSet<ReactMenu> ReactMenus { get; set; }
-        public DbSet<ReactMenuItem> ReactMenuItems { get; set; }
-        #endregion
-
-        public DungeonContext(DbContextOptions<DungeonContext> options, DiscordSocketClient client) : base(options)
+        public DungeonContext(DbContextOptions options) : base(options)
         {
-            _client = client;
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration<MessageReference>(new MessageReferenceConfiguration(this));
-            builder.ApplyConfiguration<GuildMaster>(new GuildMasterConfiguration(this));
-            builder.ApplyConfiguration<ReactMenu>(new ReactMenuConfiguration(this));
-            builder.ApplyConfiguration<ReactMenuItem>(new ReactMenuItemConfiguration(this));
+            builder.ApplyConfiguration<Guild>(new GuildConfiguration());
         }
     }
 }

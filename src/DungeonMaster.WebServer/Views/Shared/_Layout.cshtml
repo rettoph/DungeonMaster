@@ -1,0 +1,63 @@
+﻿@using DungeonMaster.WebServer.Services
+@using DungeonMaster.WebServer.Dtos
+@using Discord.WebSocket
+
+@inject DiscordUser discord
+@inject DiscordSocketClient bot
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <script>window.CurrentGuildId = '@discord.CurrentGuild.Value?.Id';</script>
+        <script src="~/js/theme.js"></script>
+    </head>
+
+    <body>
+        <div id="header">
+            <div id="header-inner">
+                <img src="@bot.CurrentUser?.GetAvatarUrl()" class="avatar" />
+                <h1 class="title">Dungeon Master</h1>
+
+                <a href="@Url.Action("Index", "Home")" id="current-guild">
+                    <img class="icon" src="@(discord.CurrentGuild.Value?.SocketInstance.Value.IconUrl)" />
+                    <span class="name">@(discord.CurrentGuild.Value?.SocketInstance.Value.Name)</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="sidebar">
+            <ul id="sidebar-inner">
+                <li class="sidebar-item">
+                    @Html.ActionLink("Home", "Index", "Guilds", new { currentGuildId = discord.CurrentGuild.Value?.Id })
+                </li>
+
+                <li class="sidebar-item">
+                    <a>Administration</a>
+                </li>
+
+                <li class="sidebar-item">
+                    @Html.ActionLink("Categories", "Categories", "Guilds", new { currentGuildId = discord.CurrentGuild.Value?.Id })
+                </li>
+
+                <li class="sidebar-item">
+                    @Html.ActionLink("42Porter", "Index", "_42Porter", new { currentGuildId = discord.CurrentGuild.Value?.Id })
+                </li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <div id="content-inner" class="row">
+                @RenderBody()
+            </div>
+        </div>
+
+        <div id="scripts">
+            @RenderSection("scripts", required: false)
+        </div>
+    </body>
+</html>

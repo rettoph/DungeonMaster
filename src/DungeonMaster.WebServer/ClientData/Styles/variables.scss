@@ -1,0 +1,42 @@
+﻿$discord-color-1: #7289da;
+$discord-color-2: #424549;
+$discord-color-3: #36393e;
+$discord-color-4: #282b30;
+$discord-color-5: #1e2124;
+
+$discord-blue: #7289da;
+$discord-red: #da7272;
+$discord-green: #72da80;
+$discord-yellow: #dad872;
+$discord-purple: #9d72da;
+
+$shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+$body-bg: $discord-color-2;
+$body-color: #fff;
+$text-muted: #fff;
+$input-color: $discord-color-5;
+
+$theme-colors: (
+  "primary": $discord-color-1,
+  "secondary": $discord-color-5,
+  "danger": $discord-red,
+  "success": $discord-green,
+  "warning": $discord-yellow,
+  "info": $discord-purple,
+);
+
+$link-color: $discord-color-1;
+
+$min-contrast-ratio: 2;
+$color-contrast-dark: $discord-color-5;
+
+$input-bg: #fff;
+
+@font-face {
+    font-family: HalfElven;
+    src: url('../Fonts/halfelven.ttf');
+}
+
+@import 'bootstrap/scss/bootstrap';

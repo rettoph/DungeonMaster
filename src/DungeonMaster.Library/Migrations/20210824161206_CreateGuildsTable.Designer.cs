@@ -4,43 +4,22 @@ using DungeonMaster.Library.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DungeonMaster.Library.Migrations
 {
     [DbContext(typeof(DungeonContext))]
-    partial class DungeonContextModelSnapshot : ModelSnapshot
+    [Migration("20210824161206_CreateGuildsTable")]
+    partial class CreateGuildsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("DungeonMaster.Library.Models.Category", b =>
-                {
-                    b.Property<decimal>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("CreatedById")
-                        .HasColumnType("decimal(20,0)");
-
-                    b.Property<decimal>("GuildId")
-                        .HasColumnType("decimal(20,0)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GuildId");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("DungeonMaster.Library.Models.Guild", b =>
                 {
@@ -82,22 +61,6 @@ namespace DungeonMaster.Library.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LogMessages");
-                });
-
-            modelBuilder.Entity("DungeonMaster.Library.Models.Category", b =>
-                {
-                    b.HasOne("DungeonMaster.Library.Models.Guild", "Guild")
-                        .WithMany("Categories")
-                        .HasForeignKey("GuildId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guild");
-                });
-
-            modelBuilder.Entity("DungeonMaster.Library.Models.Guild", b =>
-                {
-                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

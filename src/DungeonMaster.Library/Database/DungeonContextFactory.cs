@@ -1,20 +1,22 @@
-﻿using DungeonMaster.Utilities;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 
 namespace DungeonMaster.Library.Database
 {
-    public class DungeonContextFactory : IDesignTimeDbContextFactory<DungeonContext>
+    public sealed class DungeonContextFactory : IDesignTimeDbContextFactory<DungeonContext>
     {
         public DungeonContext CreateDbContext(string[] args)
         {
-            AssemblyHelper.AddAssembly(Assembly.GetAssembly(typeof(DungeonContext)));
+            IServiceCollection services = new ServiceCollection();
 
-            return DungeonMasterClient.BuildProvider().GetService<DungeonContext>();
+            DungeonSetup.ConfigureServices(services, args[0]);
+
+            IServiceProvider provider = services.BuildServiceProvider();
+
+            return provider.GetService<DungeonContext>();
         }
     }
 }
