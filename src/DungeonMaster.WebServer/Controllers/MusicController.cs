@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DungeonMaster.WebServer.Controllers
 {
-    [Route("42Porter/{currentGuildId}")]
+    [Authorize]
+    [Route("Guilds/{currentGuildId}/Music")]
     public class MusicController : Controller
     {
         public IActionResult Index()
