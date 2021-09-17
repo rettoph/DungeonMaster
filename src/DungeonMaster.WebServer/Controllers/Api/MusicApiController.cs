@@ -2,6 +2,7 @@
 using Discord;
 using Discord.WebSocket;
 using DungeonMaster.Library;
+using DungeonMaster.Library.Utilities;
 using DungeonMaster.WebServer.Services;
 using DungeonMaster.WebServer.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -28,13 +29,13 @@ namespace DungeonMaster.WebServer.Controllers.Api
             _mapper = mapper;
         }
 
-        public IActionResult Index(ChannelType type)
+        public IActionResult Index()
         {
-            SocketVoiceChannel currentVoiceChannel = this.GetCurrentVoiceChannel();
-
-            ChannelViewModel channelViewModel = _mapper.Map<ChannelViewModel>(currentVoiceChannel);
-
-            return this.Json(channelViewModel);
+            return this.Json(new MusicInfoViewModel()
+            {
+                NowPlaying = _user.CurrentGuild.Value.Music.Value.NowPlaying,
+                Queue = _user.CurrentGuild.Value.Music.Value.Queue
+            });
         }
 
         [Route("join")]
@@ -48,13 +49,25 @@ namespace DungeonMaster.WebServer.Controllers.Api
         }
 
         [Route("play")]
-        public IActionResult Play(String videoId)
+        public async Task<IActionResult> Play(String videoId)
         {
-            this.Join();
+            if (_user.CurrentGuild.Value.Music.Value.ConnectionState == ConnectionState.Disconnected)
+                this.Join();
 
-            _user.CurrentGuild.Value.Music.Value.Play(videoId);
+            _user.CurrentGuild.Value.Music.Value.Play(await Youtube.Info(videoId));
 
-            return this.Json(true);
+            return this.Index();
+        }
+
+        [Route("play-next")]
+        public async Task<IActionResult> PlayNext(String videoId)
+        {
+            if (_user.CurrentGuild.Value.Music.Value.ConnectionState == ConnectionState.Disconnected)
+                this.Join();
+
+            _user.CurrentGuild.Value.Music.Value.PlayNext(await Youtube.Info(videoId));
+
+            return this.Index();
         }
 
         [Route("stop")]
@@ -62,7 +75,18 @@ namespace DungeonMaster.WebServer.Controllers.Api
         {
             _user.CurrentGuild.Value.Music.Value.Stop();
 
-            return this.Json(true);
+            return this.Index();
+        }
+
+        [Route("enqueue")]
+        public async Task<IActionResult> Enqueue(String videoId)
+        {
+            if (_user.CurrentGuild.Value.Music.Value.ConnectionState == ConnectionState.Disconnected)
+                this.Join();
+
+            _user.CurrentGuild.Value.Music.Value.Enqueue(await Youtube.Info(videoId));
+
+            return this.Index();
         }
 
         private SocketVoiceChannel GetCurrentVoiceChannel()

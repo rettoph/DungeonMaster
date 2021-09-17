@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using DungeonMaster.Library.Services;
+using DungeonMaster.Library.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace DungeonMaster.Library.Models
 
         public Guild()
         {
-            this.Music = new Lazy<MusicService>(() => new MusicService(this));
+            this.Music = new Lazy<MusicService>(() => MusicManager.GetMusicService(this.SocketInstance.Value));
         }
 
         protected override SocketGuild GetSocketInstance(DiscordSocketClient client)

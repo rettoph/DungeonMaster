@@ -3,6 +3,7 @@ $discord-color-2: #424549;
 $discord-color-3: #36393e;
 $discord-color-4: #282b30;
 $discord-color-5: #1e2124;
+$discord-color-6: #d0d4d8;
 
 $discord-blue: #7289da;
 $discord-red: #da7272;
@@ -33,10 +34,5 @@ $min-contrast-ratio: 2;
 $color-contrast-dark: $discord-color-5;
 
 $input-bg: #fff;
-
-@font-face {
-    font-family: HalfElven;
-    src: url('../Fonts/halfelven.ttf');
-}
 
 @import 'bootstrap/scss/bootstrap';

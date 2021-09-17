@@ -35,6 +35,8 @@ namespace DungeonMaster.WebServer
             DungeonSetup.ConfigureServices(
                 services, 
                 this.Configuration["ConnectionString"], 
+                this.Configuration["YoutubeDataApi:ApplicationName"], 
+                this.Configuration["YoutubeDataApi:Key"], 
                 this.Configuration["Binaries:ffmpeg"], 
                 this.Configuration["Binaries:youtube-dl"],
                 this.Configuration["Binaries:libopus"],

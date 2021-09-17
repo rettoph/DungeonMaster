@@ -13,8 +13,6 @@ namespace DungeonMaster.Library
 {
     internal static class Libraries
     {
-        private static Boolean _resolved;
-
         public static String FFMPEG { get; private set; }
         public static String YOUTUBE_DL { get; private set; }
         public static String LIB_OPUS { get; private set; }
@@ -22,17 +20,12 @@ namespace DungeonMaster.Library
 
         public static void Configure(string ffmpeg, string youtubeDl, string libOpus, string libSodium)
         {
-            if (_resolved)
-                return;
-
             FFMPEG = ffmpeg;
             YOUTUBE_DL = youtubeDl;
             LIB_OPUS = libOpus;
             LIB_SODIUM = libSodium;
 
             NativeLibrary.SetDllImportResolver(typeof(DiscordSocketClient).Assembly, Resolve);
-
-            _resolved = true;
         }
 
         private static IntPtr Resolve(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)

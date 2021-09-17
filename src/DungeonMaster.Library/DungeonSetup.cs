@@ -18,8 +18,21 @@ namespace DungeonMaster.Library
 {
     public static class DungeonSetup
     {
-        public static void ConfigureServices(IServiceCollection services, String connectionString, String ffmpeg, String youtubeDl, String libOpus, String libSodium)
+        private static Boolean _configured = false;
+
+        public static void ConfigureServices(
+            IServiceCollection services, 
+            String connectionString,
+            String youtubeApplicationName,
+            String youtubeKey,
+            String ffmpeg,
+            String youtubeDl,
+            String libOpus,
+            String libSodium)
         {
+            if (_configured)
+                return;
+
             services.AddDbContext<DungeonContext>(options =>
             {
                 options.UseSqlServer(connectionString);
@@ -36,8 +49,10 @@ namespace DungeonMaster.Library
             }));
 
             Libraries.Configure(ffmpeg, youtubeDl, libOpus, libSodium);
+            Youtube.Configure(youtubeApplicationName, youtubeKey);
+
+            _configured = true;
+
         }
-
-
     }
 }
