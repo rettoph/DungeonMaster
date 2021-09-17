@@ -7,11 +7,12 @@
 
   <ItemGroup>
     <None Remove="binaries\linux\libopus-dev_1.3-1_amd64.deb" />
+    <None Remove="binaries\linux\libopus0_1.1.2-1ubuntu1_i386.deb" />
     <None Remove="opus.dll" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="binaries\linux\libopus-dev_1.3-1_amd64.deb">
+    <Content Include="binaries\linux\libopus0_1.1.2-1ubuntu1_i386.deb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="binaries\win-x64\libopus.dll">

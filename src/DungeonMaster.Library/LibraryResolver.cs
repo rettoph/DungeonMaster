@@ -21,8 +21,8 @@ namespace DungeonMaster.Library
         {
             [(libraryName: "opus", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\libopus.dll",
             [(libraryName: "libsodium", platform: OSPlatform.Windows, architecture: Architecture.X64)] = "binaries\\win-x64\\libsodium.dll",
-            [(libraryName: "opus", platform: OSPlatform.Linux, architecture: Architecture.X64)] = "binaries\\linux\\libopus-dev_1.3-1_amd64.deb",
-            [(libraryName: "libsodium", platform: OSPlatform.Linux, architecture: Architecture.X64)] = "binaries\\win-x64\\libsodium.dll"
+            [(libraryName: "opus", platform: OSPlatform.Linux, architecture: Architecture.X64)] = "binaries\\linux\\libopus0_1.1.2-1ubuntu1_i386.deb",
+            [(libraryName: "libsodium", platform: OSPlatform.Linux, architecture: Architecture.X86)] = "binaries\\win-x64\\libsodium.dll"
         };
 
         public static String ffmpeg;
