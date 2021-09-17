@@ -61,11 +61,12 @@ namespace DungeonMaster.Library.Services
 
             using (var stream = await Youtube.GetStream(videoId))
             {
-                using (var discord = _guild.SocketInstance.Value.AudioClient.CreatePCMStream(AudioApplication.Mixed))
+                using (var discord = _guild.SocketInstance.Value.AudioClient?.CreatePCMStream(AudioApplication.Mixed))
                 {
                     try
                     {
-                        await stream.CopyToAsync(discord);
+                        if(discord != default)
+                            await stream.CopyToAsync(discord);
                     }
                     catch(TaskCanceledException e)
                     {

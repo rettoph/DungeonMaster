@@ -36,7 +36,9 @@ namespace DungeonMaster.WebServer
                 services, 
                 this.Configuration["ConnectionString"], 
                 this.Configuration["Binaries:ffmpeg"], 
-                this.Configuration["Binaries:youtube-dl"]);
+                this.Configuration["Binaries:youtube-dl"],
+                this.Configuration["Binaries:libopus"],
+                this.Configuration["Binaries:libsodium"]);
 
             services.AddHttpContextAccessor();
 

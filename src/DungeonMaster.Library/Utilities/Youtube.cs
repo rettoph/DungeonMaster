@@ -23,7 +23,7 @@ namespace DungeonMaster.Library.Utilities
                 {
                     using (MemoryStream youtube = new MemoryStream())
                     {
-                        var youtubeCommand = Cli.Wrap(LibraryResolver.youtubeDl)
+                        var youtubeCommand = Cli.Wrap(Libraries.YOUTUBE_DL)
                             .WithArguments($"https://www.youtube.com/watch?v=G9RA5v9Hy44 -o - ")
                             .WithStandardOutputPipe(PipeTarget.ToStream(youtube))
                             .WithStandardErrorPipe(PipeTarget.ToStream(error));
@@ -32,7 +32,7 @@ namespace DungeonMaster.Library.Utilities
 
                         youtube.Position = 0;
 
-                        var ffmpegCommand = Cli.Wrap(LibraryResolver.ffmpeg)
+                        var ffmpegCommand = Cli.Wrap(Libraries.FFMPEG)
                             .WithArguments("-hide_banner -loglevel panic -i pipe: -ac 2 -f s16le -ar 48000 pipe:1")
                             .WithStandardInputPipe(PipeSource.FromStream(youtube)) | ffmpeg;
 

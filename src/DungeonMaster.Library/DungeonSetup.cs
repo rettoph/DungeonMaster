@@ -18,7 +18,7 @@ namespace DungeonMaster.Library
 {
     public static class DungeonSetup
     {
-        public static void ConfigureServices(IServiceCollection services, String connectionString, String ffmpeg, String youtubeDl)
+        public static void ConfigureServices(IServiceCollection services, String connectionString, String ffmpeg, String youtubeDl, String libOpus, String libSodium)
         {
             services.AddDbContext<DungeonContext>(options =>
             {
@@ -35,9 +35,7 @@ namespace DungeonMaster.Library
                 AlwaysDownloadUsers = true
             }));
 
-            LibraryResolver.Configure();
-            LibraryResolver.ffmpeg = ffmpeg;
-            LibraryResolver.youtubeDl = youtubeDl;
+            Libraries.Configure(ffmpeg, youtubeDl, libOpus, libSodium);
         }
 
 

@@ -6,10 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="binaries\win-x64\libopus.dll" />
+    <None Remove="binaries\win-x64\libsodium.dll" />
     <None Remove="webpack.config.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="binaries\win-x64\libopus.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="binaries\win-x64\libsodium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    
     <Content Include="ClientData\Fonts\Antique Quest St.ttf" />
     <Content Include="ClientData\Fonts\ENDORALT.ttf" />
     <Content Include="ClientData\Fonts\halfelven.ttf" />

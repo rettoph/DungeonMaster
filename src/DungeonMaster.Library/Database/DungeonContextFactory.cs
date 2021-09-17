@@ -12,7 +12,7 @@ namespace DungeonMaster.Library.Database
         {
             IServiceCollection services = new ServiceCollection();
 
-            DungeonSetup.ConfigureServices(services, args[0], default, default);
+            DungeonSetup.ConfigureServices(services, args[0], default, default, default, default);
 
             IServiceProvider provider = services.BuildServiceProvider();
 
