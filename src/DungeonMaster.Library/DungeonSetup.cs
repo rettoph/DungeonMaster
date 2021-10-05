@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Commands;
 using Discord.WebSocket;
 using DungeonMaster.Library.Database;
 using DungeonMaster.Library.Extensions.DependencyInjection;
@@ -47,6 +48,9 @@ namespace DungeonMaster.Library
                 GatewayIntents = GatewayIntents.All,
                 AlwaysDownloadUsers = true
             }));
+
+            services.AddSingleton<CommandService>();
+            services.AddSingleton<CommandHandlingService>();
 
             Libraries.Configure(ffmpeg, youtubeDl, libOpus, libSodium);
             Youtube.Configure(youtubeApplicationName, youtubeKey);

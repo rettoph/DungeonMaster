@@ -21,14 +21,16 @@ namespace DungeonMaster.Library.Services
         private DiscordSocketClient _client;
         private IConfiguration _configuration;
         private IServiceProvider _provider;
+        private CommandHandlingService _commands;
         #endregion
 
         #region Constructor
-        public DiscordSocketClientManagmentService(DiscordSocketClient client, Logger logger, IConfiguration configuration, IServiceProvider provider)
+        public DiscordSocketClientManagmentService(DiscordSocketClient client, Logger logger, IConfiguration configuration, IServiceProvider provider, CommandHandlingService commands)
         {
             _client = client;
             _configuration = configuration;
             _provider = provider;
+            _commands = commands;
 
             DungeonBot.ClientInstance = client;
             DungeonBot.Logger = logger;
@@ -49,6 +51,9 @@ namespace DungeonMaster.Library.Services
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
+
+            // Here we initialize the logic required to register our commands.
+            await _commands.InitializeAsync();
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
