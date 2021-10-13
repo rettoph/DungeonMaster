@@ -69,7 +69,7 @@ namespace DungeonMaster.Library.Utilities
         #endregion
 
         #region Stream Methods
-        public static async Task<Stream> GetStream(String videoId)
+        public static async Task<Stream> GetStream(String videoId, CancellationToken cancellationToken)
         {
             MemoryStream ffmpeg = new MemoryStream();
 
@@ -79,21 +79,27 @@ namespace DungeonMaster.Library.Utilities
                 {
                     using (MemoryStream youtube = new MemoryStream())
                     {
+                        DungeonBot.Logger.Verbose($"Youtube::GetStream({videoId}) Running youtube-dl", default, LogMessageType.System);
+
                         var youtubeCommand = Cli.Wrap(Libraries.YOUTUBE_DL)
-                            .WithArguments($"https://www.youtube.com/watch?v={videoId} -o - ")
+                            .WithArguments($"https://www.youtube.com/watch?v={videoId} -f 140 -o - ")
                             .WithStandardOutputPipe(PipeTarget.ToStream(youtube))
                             .WithStandardErrorPipe(PipeTarget.ToStream(error));
 
-                        await youtubeCommand.ExecuteAsync();
+                        await youtubeCommand.ExecuteAsync(cancellationToken);
 
                         youtube.Position = 0;
+
+                        DungeonBot.Logger.Verbose($"Youtube::GetStream({videoId}) Running ffmpeg", default, LogMessageType.System);
 
                         var ffmpegCommand = Cli.Wrap(Libraries.FFMPEG)
                             .WithArguments("-hide_banner -loglevel panic -i pipe: -ac 2 -f s16le -ar 48000 -filter:a \"volume = 0.25\" pipe:1")
                             .WithStandardInputPipe(PipeSource.FromStream(youtube)) | ffmpeg;
 
-                        await ffmpegCommand.ExecuteAsync();
+                        await ffmpegCommand.ExecuteAsync(cancellationToken);
                     }
+
+                    DungeonBot.Logger.Verbose($"Youtube::GetStream({videoId}) Done.", default, LogMessageType.System);
 
                     return ffmpeg;
                 }
@@ -101,10 +107,16 @@ namespace DungeonMaster.Library.Utilities
                 {
                     error.Position = 0;
 
-                    using(StreamReader reader = new StreamReader(error))
+                    if(error.Length == 0)
                     {
-                        DungeonBot.Logger.Critical(reader.ReadToEnd());
-                        DungeonBot.Logger.Critical(message: e.Message, type: LogMessageType.System);
+                        DungeonBot.Logger.Critical(message: $"Youtube::GetStream({videoId}) {cancellationToken.GetHashCode()} {e.Message}", type: LogMessageType.System);
+                    }
+                    else
+                    {
+                        using (StreamReader reader = new StreamReader(error))
+                        {
+                            DungeonBot.Logger.Critical($"Youtube::GetStream({videoId}) {reader.ReadToEnd()}");
+                        }
                     }
 
                     return default;

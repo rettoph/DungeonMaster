@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="row">
-                    <youtube-video v-if="info.nowPlaying != null"
+                    <playback-request v-if="info.nowPlaying != null"
                                    :data="info.nowPlaying"
                                    :options="NOW_PLAYING_OPTIONS"
                                    @optionClicked="handleResultOptionClicked" />
@@ -24,9 +24,9 @@
                 </div>
 
                 <div class="row">
-                    <youtube-video v-if="info.queue != null"
-                                   v-for="video in info.queue"
-                                   :data="video"
+                    <playback-request v-if="info.queue != null"
+                                   v-for="request in info.queue"
+                                   :data="request"
                                    :options="PLAYLIST_OPTIONS"
                                    @optionClicked="handleResultOptionClicked" />
                 </div>
@@ -63,6 +63,7 @@
 <script>
     import axios from 'axios';
     import YoutubeVideo from '../../Shared/Components/YoutubeVideo.vue';
+    import PlaybackRequest from '../../Shared/Components/PlaybackRequest.vue';
 
     const RESULT_OPTIONS = {
         ADD_TO_QUEUE: "Add to Queue",
@@ -80,7 +81,8 @@
 
     export default {
         components: {
-            'youtube-video': YoutubeVideo
+            'youtube-video': YoutubeVideo,
+            'playback-request': PlaybackRequest
         },
         data() {
             return {
